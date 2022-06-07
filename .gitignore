@@ -1,0 +1,13 @@
+/node_modules/
+.env
+readme.txt
+
+#Hardhat files
+cache
+artifacts
+
+.idea
+typechain
+coverage
+coverage.json
+yarn.lock
