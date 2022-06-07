@@ -7,12 +7,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments;
 
     const Token = await deploy("RewardToken", {
-        contract: "Token",
+        contract: "RewardToken",
         from: deployer.address,
         log: true
     });
 
-    if (hre.network.name == "hardhat" || hre.network.name == "geori") {
+    if (hre.network.name == "hardhat" || hre.network.name == "bscTest") {
         await deploy("MockUSDC", {
             contract: "MockERC20",
             from: deployer.address,

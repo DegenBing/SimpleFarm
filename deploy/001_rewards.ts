@@ -15,7 +15,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true
   });
 
-  if (hre.network.name == "hardhat" || hre.network.name == "geori") {
+  if (hre.network.name == "hardhat" || hre.network.name == "bscTest") {
     const USDC = await hre.ethers.getContract("MockUSDC");
     const USDT = await hre.ethers.getContract("MockUSDT");
 

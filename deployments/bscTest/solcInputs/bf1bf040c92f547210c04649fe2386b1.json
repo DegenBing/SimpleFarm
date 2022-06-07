@@ -34,8 +34,8 @@
     "contracts/mock/MockERC20.sol": {
       "content": "// SPDX-License-Identifier: AGPL-3.0-or-later\r\n\r\npragma solidity =0.8.12;\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\n\r\ncontract MockERC20 is ERC20 {\r\n    constructor(string memory name_, string memory symbol_) ERC20(name_, symbol_) {\r\n        _mint(msg.sender, 10**30);\r\n    }\r\n\r\n    function mint(address to, uint amount) external{\r\n        _mint(to, amount);\r\n    }\r\n}\r\n"
     },
-    "contracts/libs/Token.sol": {
-      "content": "// SPDX-License-Identifier: AGPL-3.0-or-later\r\n\r\npragma solidity =0.8.12;\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\nimport \"./Ownable.sol\";\r\n\r\ncontract Token is ERC20, Ownable {\r\n\r\n    constructor () ERC20(\"RewardToken\", \"rToken\") {\r\n    }\r\n\r\n    function mint(address to, uint amount) external onlyOwner{\r\n        _mint(to, amount);\r\n    }\r\n}\r\n   "
+    "contracts/libs/RewardToken.sol": {
+      "content": "// SPDX-License-Identifier: AGPL-3.0-or-later\r\n\r\npragma solidity =0.8.12;\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\nimport \"./Ownable.sol\";\r\n\r\ncontract RewardToken is ERC20, Ownable {\r\n\r\n    mapping(address => uint) public minters;\r\n    event SetMinter(address indexed minter, uint amount);\r\n\r\n    constructor () ERC20(\"RewardToken\", \"rToken\") {\r\n    }\r\n\r\n    function setMinter(address minter, uint amount) external onlyOwner {\r\n        minters[minter] = amount;\r\n        emit SetMinter(minter, amount);\r\n    }\r\n\r\n    function mint(address to, uint amount) external onlyOwner{\r\n        require(amount <= minters[msg.sender], \"cCRV: insufficient mint allowance\");\r\n        minters[msg.sender] -= amount;\r\n        _mint(to, amount);\r\n    }\r\n}\r\n   "
     }
   },
   "settings": {
