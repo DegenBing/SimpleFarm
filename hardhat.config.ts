@@ -60,13 +60,19 @@ export default {
       chainId: 97,
       url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
       accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        process.env.TEST_KEY !== undefined ? [process.env.TEST_KEY] : [],
     },
     bsc: {
       chainId: 56,
       url: "https://bsc-dataseed.binance.org/",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
+    geori: {
+      chainId: 5,
+      url: "https://eth-goerli.alchemyapi.io/v2/2Ep8pxxRx53-mJhPBTcGdV40FYDMePem/",
+      accounts:
+        process.env.TEST_KEY !== undefined ? [process.env.TEST_KEY] : [],
     }
   },
   gasReporter: {

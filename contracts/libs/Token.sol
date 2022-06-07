@@ -7,7 +7,7 @@ import "./Ownable.sol";
 
 contract Token is ERC20, Ownable {
 
-    constructor () ERC20("Token Name", "Symbol") {
+    constructor () ERC20("RewardToken", "rToken") {
     }
 
     function mint(address to, uint amount) external onlyOwner{
